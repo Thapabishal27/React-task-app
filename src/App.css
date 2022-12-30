@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: cursive;
+  font-family: monospace;
 }
 
 .container {
@@ -41,9 +41,9 @@
 
 .input-category {
   width: 100%;
+  margin-bottom: 20px;
   height: 30px;
   font-size: 16px;
-  margin-bottom: 20px;
 }
 
 .input-date {
@@ -97,8 +97,8 @@ li {
   display: inline-block;
   background-color: rgb(163, 231, 213);
   color: rgb(53, 52, 52);
-  padding: 6px;
-  width: 250px;
+  padding: 12px;
+  width: 300px;
   border-radius: 4px;
   font-size: 12px;
   list-style-type: none;
@@ -113,7 +113,7 @@ li {
   position: relative;
 }
 .note-category {
-  color: black;
+  color: rgb(255, 111, 0);
   display: inline;
   text-decoration: underline;
   font-size: 18px;
@@ -121,7 +121,7 @@ li {
 }
 
 .note-date {
-  color: #616161;
+  color: #2e4202;
   font-size: 14px;
   font-family: sans-serif;
   font-style: italic;
@@ -135,10 +135,23 @@ li {
   margin-bottom: 50px;
   clear: both;
   word-wrap: break-word;
+  color: rgb(113, 112, 112);
+  font-family: monospace;
+}
+
+.edit button {
+  background-color: rgb(99, 142, 130);
+  color: white;
+  border-radius: 2px;
+  padding: 2px;
+  border: 1px none;
+  position: absolute;
+  bottom: 4px;
 }
 .delete {
   position: absolute;
   bottom: 0px;
+  margin-left: 40px;
 }
 
 img {
@@ -152,4 +165,26 @@ img {
   color: white;
   border: none;
   margin: 100px 0 20px 12px;
+}
+
+.status {
+  position: absolute;
+  right: 24px;
+  bottom: -16px;
+  margin-bottom: 20px;
+}
+
+.status-option {
+  background-color: rgb(99, 142, 130);
+  color: white;
+  border: none;
+  padding: 2px;
+  border-radius: 2px;
+  font-size: 12px;
+}
+
+#label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 10px;
 }

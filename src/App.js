@@ -4,26 +4,24 @@ import icon from "./icon.png";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
-  const [showInputValue, setShowInputValue] = useState("");
 
   const [inputCategory, setInputCategory] = useState("");
-  const [showInputCategory, setShowInputCategory] = useState("");
 
   const [inputDate, setInputDate] = useState("");
-  const [showInputDate, setShowInputDate] = useState("");
 
   const [list, setList] = useState([]);
 
   const handleClick = (event) => {
     event.preventDefault();
-    setShowInputValue(inputValue);
-    setShowInputCategory(inputCategory);
-    setShowInputDate(inputDate);
 
-    const Data = { inputValue, inputCategory, inputDate };
+    let Data = {
+      value: inputValue,
+      category: inputCategory,
+      date: inputDate,
+    };
 
     if (inputValue && inputCategory && inputDate) {
-      setList((list) => [...list, Data]);
+      setList([...list, Data]);
     } else {
       alert("Add a task");
     }
@@ -33,10 +31,21 @@ function App() {
   };
 
   const deleteTask = (id) => {
-    const updateList = list.filter((newlist, number) => {
-      return id !== number;
+    const updateList = list.filter((newlist, num) => {
+      return id !== num;
     });
     setList(updateList);
+  };
+
+  const editTask = (id) => {
+    const updateList = list.filter((newlist, num) => {
+      return id !== num;
+    });
+
+    const editedUser = list.find((u) => u === id);
+    setList(updateList);
+    setInputValue(editedUser.value);
+    setInputCategory(editedUser.Category);
   };
 
   const handleDeleteAll = () => {
@@ -58,18 +67,11 @@ function App() {
             />
             <h3>Add Category</h3>
             <input
-              list="browsers"
-              placeholder=""
+              type="text"
               className="input-category"
               value={inputCategory}
               onChange={(e) => setInputCategory(e.target.value)}
             />
-            <datalist id="browsers">
-              <option value="Home" />
-              <option value="Shopping" />
-              <option value="Work" />
-              <option value="sports" />
-            </datalist>
             <h3>Set Deadline:</h3>
             <input
               type="date"
@@ -77,7 +79,7 @@ function App() {
               onChange={(e) => setInputDate(e.target.value)}
             />
           </div>
-          <button onClick={handleClick} className="createtask">
+          <button type="submit" onClick={handleClick} className="createtask">
             Create task
           </button>
         </div>
@@ -88,20 +90,33 @@ function App() {
             <h1 className="title1">My task</h1>
             <div className="row">
               {list.map((a, id) => (
-                <ul>
-                  <li key={id}>
+                <ul key={id}>
+                  <li>
                     <div className="note-heading">
-                      <h3 className="note-category">{a.inputCategory}</h3>
-                      <h4 className="note-date">{a.inputDate}</h4>
+                      <h3 className="note-category">{a.category}</h3>
+                      <h4 className="note-date">{a.date}</h4>
                     </div>
-
-                    <h3 className="note-value">{a.inputValue}</h3>
+                    <h3 className="note-value">{a.value}</h3>
+                    <div className="edit">
+                      <button onClick={() => editTask(id)}>Edit</button>
+                    </div>
                     <div className="delete">
                       <img
                         src={icon}
                         onClick={() => deleteTask(id)}
                         alt="delete"
                       ></img>
+                    </div>
+                    <div className="status">
+                      <label for="status" id="label">
+                        Status:
+                      </label>
+                      <select id="item1" className="status-option" name="item1">
+                        <option value="1">Incompleted</option>
+                        <option value="2" id="completed">
+                          Completed
+                        </option>
+                      </select>
                     </div>
                   </li>
                 </ul>
