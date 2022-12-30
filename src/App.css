@@ -139,7 +139,7 @@ li {
   font-family: monospace;
 }
 
-.edit button {
+.edit {
   background-color: rgb(99, 142, 130);
   color: white;
   border-radius: 2px;

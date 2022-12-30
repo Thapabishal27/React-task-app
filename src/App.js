@@ -15,9 +15,9 @@ function App() {
     event.preventDefault();
 
     let Data = {
-      value: inputValue,
-      category: inputCategory,
-      date: inputDate,
+      inputValue,
+      inputCategory,
+      inputDate,
     };
 
     if (inputValue && inputCategory && inputDate) {
@@ -37,19 +37,19 @@ function App() {
     setList(updateList);
   };
 
+  const handleDeleteAll = () => {
+    setList([]);
+  };
+
   const editTask = (id) => {
     const updateList = list.filter((newlist, num) => {
       return id !== num;
     });
 
-    const editedUser = list.find((u) => u === id);
+    const editedUser = list.find((ewuser, num) => num === id);
     setList(updateList);
-    setInputValue(editedUser.value);
-    setInputCategory(editedUser.Category);
-  };
-
-  const handleDeleteAll = () => {
-    setList([]);
+    setInputValue(editedUser.inputValue);
+    setInputCategory(editedUser.inputCategory);
   };
 
   return (
@@ -93,12 +93,18 @@ function App() {
                 <ul key={id}>
                   <li>
                     <div className="note-heading">
-                      <h3 className="note-category">{a.category}</h3>
-                      <h4 className="note-date">{a.date}</h4>
+                      <h3 className="note-category">{a.inputCategory}</h3>
+                      <h4 className="note-date">{a.inputDate}</h4>
                     </div>
-                    <h3 className="note-value">{a.value}</h3>
-                    <div className="edit">
-                      <button onClick={() => editTask(id)}>Edit</button>
+                    <h3 className="note-value">{a.inputValue}</h3>
+                    <div>
+                      <button
+                        type="submit"
+                        className="edit"
+                        onClick={() => editTask(id)}
+                      >
+                        Edit
+                      </button>
                     </div>
                     <div className="delete">
                       <img
@@ -108,14 +114,10 @@ function App() {
                       ></img>
                     </div>
                     <div className="status">
-                      <label for="status" id="label">
-                        Status:
-                      </label>
+                      <label id="label">Status:</label>
                       <select id="item1" className="status-option" name="item1">
-                        <option value="1">Incompleted</option>
-                        <option value="2" id="completed">
-                          Completed
-                        </option>
+                        <option>Incompleted</option>
+                        <option id="completed">Completed</option>
                       </select>
                     </div>
                   </li>
